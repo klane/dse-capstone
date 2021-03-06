@@ -1,2 +1,4 @@
 # Jupyter Notebook
 .ipynb_checkpoints/
+
+seq2seq_example/data_traffic/*
