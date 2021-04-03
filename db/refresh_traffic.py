@@ -1,27 +1,29 @@
 import getpass
-import glob
-import io
 import re
 from datetime import datetime
 
+import boto3
 import pandas as pd
 import sqlalchemy as sal
 from tqdm import tqdm
 
+from .utils import insert_with_progress
+
+DISTRICTS = [3, 4, 5, 6, 7, 8, 10, 11, 12]
+YEARS = [2018, 2019, 2020, 2021]
+
+# S3
+BUCKET_NAME = 'dse-grp3-capstone-data'
+
+# RDS
 ENDPOINT = 'capstone.clihskgj8i7s.us-west-2.rds.amazonaws.com'
 USER = 'group3'
 DB = 'db1'
 PASSWORD = getpass.getpass('Enter database password')
 
 
-def chunker(seq, size):
-    # from http://stackoverflow.com/a/434328
-    return (seq[pos:pos + size] for pos in range(0, len(seq), size))
-
-
 def read_traffic(filename):
-    df = pd.read_csv(filename, header=None)
-    df = df.iloc[:, [0, 1, 7, 8, 9, 10, 11]]
+    df = pd.read_csv(f's3://{BUCKET_NAME}/{filename}', usecols=[0, 1, 7, 8, 9, 10, 11])
     df.columns = [
         'timestamp',
         'station',
@@ -41,43 +43,28 @@ def read_traffic(filename):
     return df
 
 
-def insert_with_progress(df, conn, sep=','):
-    chunksize = int(len(df) / 10)
-    rows = 0
-
-    with tqdm(total=len(df), desc='Current file', leave=False) as pbar:
-        for cdf in chunker(df, chunksize):
-            cursor = conn.cursor()
-            fbuf = io.StringIO()
-            cdf.to_csv(fbuf, index=False, header=False, sep=sep)
-            fbuf.seek(0)
-            cursor.copy_from(fbuf, 'traffic', sep=sep, null='')
-            conn.commit()
-            cursor.close()
-            pbar.update(chunksize)
-            rows += len(cdf)
-
-    return rows
-
-
-traffic_files = glob.glob('caltrans/station_5min/2021/d*/*.txt.gz')
+s3 = boto3.resource('s3')
+bucket = s3.Bucket(BUCKET_NAME)
 engine = sal.create_engine(f'postgresql://{USER}:{PASSWORD}@{ENDPOINT}/{DB}')
 conn = engine.raw_connection()
 rows = 0
-traffic_files.reverse()
 
-for f in tqdm(traffic_files, desc='All files'):
-    try:
-        df = read_traffic(f)
-    except Exception as e:
-        print(f'Error reading {f}')
-        print(e)
-        continue
+for year in tqdm(YEARS, desc='Year'):
+    for district in tqdm(DISTRICTS, desc='District', leave=False):
+        prefix = f'caltrans/station_5min/{year}/d{district}'
+        objects = bucket.objects.filter(Prefix=prefix)
+        files = [o.key for o in objects if o.key[-7:] == '.txt.gz']
+        files.sort()
 
-    try:
-        rows += insert_with_progress(df, conn)
-    except Exception:
-        print(f'Error inserting {f}')
-        continue
+        for f in tqdm(files, desc=f'District {district} ({year})', leave=False):
+            # read data
+            df = read_traffic(f)
 
-print(f'Total rows: {rows}')
+            # insert data
+            date = re.findall(r'\d{4}_\d{2}_\d{2}', f)[0]
+            insert_with_progress(df, conn, 'traffic', pbar_desc=date)
+
+            # track total rows inserted
+            rows += len(df)
+
+print(f'Total rows inserted: {rows}')
