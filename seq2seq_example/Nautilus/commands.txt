@@ -1,0 +1,34 @@
+# use jupyter notebook
+
+kubectl get pods
+
+kubectl create -f tensorflow-pod.yaml
+
+kubectl exec -it gpu-pod-example  bash
+
+jupyter notebook --ip='0.0.0.0'
+
+kubectl port-forward raul-pod-dse 8888:8888
+
+
+# copy to and from pod
+
+# to
+kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/Nautilus/Nautilus_seq2seq_traffic_Data_allStations.ipynb" "raul-pod-dse:work/Nautilus_seq2seq_traffic_Data_allStations.ipynb"
+
+kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_allStations_12pts.pkl" "raul-pod-dse:work/traffic_bayArea_station_allStations_12pts.pkl"
+
+# from
+kubectl cp "raul-pod-dse:work/Nautilus_seq2seq_traffic_Data_allStations.ipynb" "./Box/Personal Git/dse-capstone/seq2seq_example/Nautilus/Nautilus_seq2seq_traffic_Data_allStations.ipynb"
+
+
+# copy models from pod
+kubectl cp "raul-pod-dse:work/traffic_bayArea_station_400001_model.pth" "./Box/Personal Git/dse-capstone/seq2seq_example/Nautilus/models/traffic_bayArea_station_400001_model.pth"
+
+
+
+# leave pod
+exit
+
+
+
