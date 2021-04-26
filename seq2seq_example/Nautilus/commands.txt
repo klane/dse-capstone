@@ -2,9 +2,9 @@
 
 kubectl get pods
 
-kubectl create -f raul-pod-dse.yaml
+kubectl create -f transfer-pod.yaml
 
-kubectl exec -it raul-pod-dse  bash
+kubectl exec -it dataaccess  bash
 
 jupyter notebook --ip='0.0.0.0'
 
@@ -43,7 +43,7 @@ kubectl delete pvc models-vol
 CLEAR PODS WITH ATTACHED VOL
 JOB -> ATTACH VOL -> CREATE POD -> PROCESS -> DELETE POD
 
-kubectl apply -f test-print.yaml
+kubectl apply -f seq2seq-job.yaml
 
 
 # copy to and from pod
@@ -51,12 +51,16 @@ kubectl apply -f test-print.yaml
 # notebook to nautilus
 kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/Nautilus/Nautilus_seq2seq_traffic_Data_allStations.ipynb" "raul-pod-dse:work/Nautilus_seq2seq_traffic_Data_allStations.ipynb"
 
+kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_allStations_12pts.pkl" "dataaccess3:models-vol3/traffic_bayArea_station_allStations_12pts.pkl"
+
+
 
 kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/Nautilus/Nautilus_seq2seq_traffic_Data_allStations.ipynb" "dataaccess:/data/Nautilus_seq2seq_traffic_Data_allStations.ipynb"
 
 
 # pickle file to nautilus
-kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_allStations_12pts.pkl" "raul-pod-dse:work/traffic_bayArea_station_allStations_12pts.pkl"
+kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_400001.pkl" "dataaccess:models-vol/traffic_bayArea_station_400001.pkl"
+
 
 # notebook to local
 kubectl cp "raul-pod-dse:work/Nautilus_seq2seq_traffic_Data_allStations.ipynb" "./Box/Personal Git/dse-capstone/seq2seq_example/Nautilus/Nautilus_seq2seq_traffic_Data_allStations.ipynb"
@@ -76,11 +80,14 @@ kubectl cp "dataaccess:models-vol/traffic_bayArea_station_400001_model.pth" "./t
 
 kubectl cp "dataaccess:models-vol/traffic_bayArea_station_400001_results_dict.pkl" "./traffic_bayArea_station_400001_results_dict.pkl"
 
+kubectl cp "dataaccess:models-vol/traffic_bayArea_station_mediumSize_12pts_model.pth" "./dataaccess_mediumSize_50station/traffic_bayArea_station_mediumSize_12pts_model.pth"
 
+
+kubectl cp "dataaccess:models-vol/traffic_bayArea_station_mediumSize_12pts_results_dict.pkl" "./dataaccess_mediumSize_50station/traffic_bayArea_station_mediumSize_12pts_results_dict.pkl"
 
 
 # copy from local to persistent volume
-kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_allStations_12pts.pkl" "dataaccess:models-vol/traffic_bayArea_station_allStations_12pts.pkl"
+kubectl cp "dataaccess:models-vol/traffic_bayArea_station_mediumSize_12pts_model.pth" "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_mediumSize_12pts_model.pth" 
 
 kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_allStations_12pts.pkl" "dataaccess2:models-vol2/traffic_bayArea_station_allStations_12pts.pkl"
 
@@ -89,4 +96,21 @@ kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic
 exit
 
 
+
+# copy results from pod
+
+kubectl cp "dataaccess:models-vol/trained_model.pth" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/station_400001/trained_model.pth" 
+
+kubectl cp "dataaccess:models-vol/results_dict.pkl" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/station_400001/results_dict.pkl" 
+
+kubectl cp "dataaccess:models-vol/training_logger.log" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/station_400001/training_logger.log" 
+
+
+kubectl cp "dataaccess3:models-vol3/trained_model.pth" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/station_400001/trained_model.pth" 
+
+
+# clean pod for re-running
+rm results_dict.pkl
+rm trained_model.pth
+rm training_logger.log
 
