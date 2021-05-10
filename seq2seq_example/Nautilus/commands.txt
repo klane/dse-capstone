@@ -51,7 +51,7 @@ kubectl apply -f seq2seq-job.yaml
 # notebook to nautilus
 kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/Nautilus/Nautilus_seq2seq_traffic_Data_allStations.ipynb" "raul-pod-dse:work/Nautilus_seq2seq_traffic_Data_allStations.ipynb"
 
-kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_allStations_12pts.pkl" "dataaccess3:models-vol3/traffic_bayArea_station_allStations_12pts.pkl"
+kubectl cp "./Box/Personal Git/dse-capstone/seq2seq_example/data_traffic/traffic_bayArea_station_allStations_12pts_SPEED.pkl" "dataaccess5:models-vol5/traffic_bayArea_station_allStations_12pts_SPEED.pkl"
 
 
 
@@ -99,14 +99,32 @@ exit
 
 # copy results from pod
 
-kubectl cp "dataaccess:models-vol/trained_model.pth" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/station_400001/trained_model.pth" 
+kubectl cp "dataaccess:models-vol/trained_model.pth" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/all_stations_speed/trained_model.pth" 
 
-kubectl cp "dataaccess:models-vol/results_dict.pkl" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/station_400001/results_dict.pkl" 
+kubectl cp "dataaccess:models-vol/results_dict.pkl" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/all_stations_speed/results_dict.pkl" 
 
-kubectl cp "dataaccess:models-vol/training_logger.log" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/station_400001/training_logger.log" 
+kubectl cp "dataaccess:models-vol/training_logger.log" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/all_stations_speed/training_logger.log" 
+
+---------------------------
+
+kubectl cp "dataaccess2:models-vol2/trained_model.pth" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/512/all_stations_speed/trained_model.pth" 
+
+kubectl cp "dataaccess2:models-vol2/results_dict.pkl" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/512/all_stations_speed/results_dict.pkl" 
+
+kubectl cp "dataaccess2:models-vol2/training_logger.log" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/512/all_stations_speed/training_logger.log" 
+
+---------------------------
+
+kubectl cp "dataaccess3:models-vol3/trained_model.pth" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/64/all_stations_speed/trained_model.pth" 
+
+kubectl cp "dataaccess3:models-vol3/results_dict.pkl" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/64/all_stations_speed/results_dict.pkl" 
+
+kubectl cp "dataaccess3:models-vol3/training_logger.log" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/64/all_stations_speed/training_logger.log" 
+
+---------------------------
 
 
-kubectl cp "dataaccess3:models-vol3/trained_model.pth" "./Box/Personal Git/Nautilus-seq2seq/multiple_batch_size/model_outputs/1024/station_400001/trained_model.pth" 
+kubectl cp "dataaccess5:models-vol5/training_logger.log" "./Box/Personal Git/Nautilus-seq2seq/hyper_param_tunning/training_logger.log" 
 
 
 # clean pod for re-running
