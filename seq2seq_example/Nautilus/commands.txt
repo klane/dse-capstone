@@ -16,7 +16,7 @@ kubectl get jobs
 
 kubectl logs pod_name
 
-kubectl describe jobs/myjob
+kubectl describe jobs/myjobkubectl
 
 kubectl describe pod {POD_NAME}
 
