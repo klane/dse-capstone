@@ -2,3 +2,7 @@
 .ipynb_checkpoints/
 
 seq2seq_example/data_traffic/*
+
+/dashboard_traffic_layer/traffic_pred_horizon12.pkl
+
+/dashboard-AG-DR-RM/traffic_pred_horizon12.pkl
