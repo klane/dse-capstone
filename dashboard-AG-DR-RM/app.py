@@ -94,25 +94,45 @@ def plot_time_series_station(stid, horizon, start_date, end_date):
     return fig3, min_date, max_date
 
 
-#function to move fwys in separate directions apart for visualization
-def spread_lanes(sdf, fwdir, latspread=0.0005, lonspread=0.0005):
+def spread_lanes_v2(sdf, fwdir, spread_distance=0.0015):
+    #for now spread distance is given in degrees, although this is not accurate
+    odf=sdf.copy()
     direc=fwdir[-1]
     
-    # this assumes right-hand traffic
-    if direc == 'W':
-         sdf["latitude"] += latspread
-    elif direc == "E":
-        sdf["latitude"] -= latspread
-    elif direc == "S":
-        sdf["longitude"] -= lonspread
-    elif direc == "N":
-        sdf["longitude"] += lonspread
-    
-    return sdf
+    n=odf.index[0]
+    n1=odf.index[-1]
+        
+    dirvec=np.array([odf.loc[n1,"longitude"] - odf.loc[n, "longitude"], odf.loc[n1,"latitude"] - odf.loc[n,"latitude"]])
+    vecp=np.flipud(dirvec) / np.linalg.norm(dirvec) * spread_distance
+        
+    if direc == 'N' or direc == 'E':
+        vecp[1] = -vecp[1]
 
+    elif direc == 'S' or direc == 'W':
+        vecp[0] = -vecp[0]
+        
+    odf["longitude"] += vecp[0]
+    odf["latitude"] += vecp[1]
+
+    return (odf, vecp)
+
+def spread_sensors_v2(sensin, vecpdict):
+    #vecpdict: dictionary with translation vector for each freeway and direction
+    #vecp is produced by function spread_lanes_v2
+    sensout=sensin.copy()
+    
+    for n in sensout.index:
+        fwdir=str(sensout.loc[n,"fwy"]) + sensout.loc[n,"direc"]
+        if fwdir in vecpdict.keys():
+            sensout.loc[n,"longitude"] += vecpdict[fwdir][0]
+            sensout.loc[n,"latitude"] += vecpdict[fwdir][1]
+    
+    return sensout
 
 hrdfs=[]
 def interpolate_onto_hr_roads(indf, cols=["avg_speed"], dropna = False, do_spread_lanes=True):
+
+    vecpdict={}
 
     for fwdir in indf["fwdir"].unique():
         print("\rInterpolating average speed along %s " % fwdir, end="")
@@ -121,7 +141,8 @@ def interpolate_onto_hr_roads(indf, cols=["avg_speed"], dropna = False, do_sprea
         selhr=hfroads_data.query("fwdir == '%s'" % fwdir).sort_values(by="abs_pm")
         
         if do_spread_lanes:
-            selhr=spread_lanes(selhr, fwdir)
+            selhr,vecp=spread_lanes_v2(selhr, fwdir)
+            vecpdict[fwdir] = vecp
 
         if len(sel) > 1:
             #fillvalmin=sel.loc[minidx,"abs_pm"]
@@ -137,7 +158,7 @@ def interpolate_onto_hr_roads(indf, cols=["avg_speed"], dropna = False, do_sprea
     selhr=pd.concat(hrdfs)
     selhr.reset_index(drop=True, inplace=True)
     
-    return selhr
+    return selhr, vecpdict
 
 
 def speed2cat(speed):
@@ -145,9 +166,9 @@ def speed2cat(speed):
         return 'no data'
     elif speed > 65:
         return 'fast'
-    elif speed > 60:
-        return 'moderate'
     elif speed > 50:
+        return 'moderate'
+    elif speed > 35:
         return 'slow'
     else: 
         return 'very slow'
@@ -260,14 +281,16 @@ def get_timestamp_list(start_date, end_date, t_delta):
 
 
 def find_selhr(snap_var):
-    selhr=interpolate_onto_hr_roads(snap_var, cols=["pred_speed", "true_speed", "pred_error"])
+    selhr,vecpdict =interpolate_onto_hr_roads(snap_var, cols=["pred_speed", "true_speed", "pred_error"])
+
+    sensors_spread=spread_sensors_v2(sensors_data, vecpdict)
 
     selhr["pred_speed_cat"]=selhr["pred_speed"].apply(speed2cat)
     selhr["true_speed_cat"]=selhr["true_speed"].apply(speed2cat)
 
     selhr["err_cat"]=selhr["pred_error"].apply(err2cat)
 
-    return selhr
+    return selhr, sensors_spread
 
 def NormalizeData(data):
     return (data - np.min(data)) / (np.max(data) - np.min(data))
@@ -759,10 +782,16 @@ Input('horizons-select','value')])
 def plot_roads(plotcat, snap_var, timestamp_value, horizon):
     # plotly.io.templates.default='plotly'
     #del fig
+
+    if plotcat.find("speed") >= 0:
+        catord={plotcat: ["fast", "moderate", "slow", "very slow", "no data"]}
+    else:
+        catord={plotcat: ['overpredict > 5 mph', 'overpredict 1 - 5 mph',
+                         'within 1 mph', 'underpredict 1 - 5 mph', 'underpredict > 5 mph']}
     
     snap_var = pd.read_json(snap_var, orient='split')
 
-    selhr = find_selhr(snap_var)
+    selhr,sensors_spr = find_selhr(snap_var)
 
     selhrg=road_group_split(selhr, splitcat=plotcat) 
                         #keep_cols=keepcols)
@@ -770,22 +799,23 @@ def plot_roads(plotcat, snap_var, timestamp_value, horizon):
     fig = px.line_mapbox(
     #fig=px.scatter_mapbox
         selhrg, lat="latitude", lon="longitude", color=plotcat,
-                            #mapbox_style="carto-darkmatter",
-                            mapbox_style="carto-positron",
+                            mapbox_style="carto-darkmatter",
+                            #mapbox_style="carto-positron",
                             #color_continuous_scale="aggrnyl" ,
                             line_group = "linegroup",
                             hover_data=list(selhrg.columns),
                             center = {"lat": 37.34, "lon": -121.93},
                             color_discrete_map= cdme if plotcat == "err_cat" else cdm,
-                            zoom=10
+                            zoom=10,
+                            category_orders=catord
                             # height=600, width=600
                             )
 
     for dat in fig.data:
         dat["line"]["width"] = 5
 
-    sensors_data["size"] = 3
-    fig2 = px.scatter_mapbox(sensors_data.reset_index(), lat="latitude", lon="longitude",
+    sensors_spr["size"] = 3
+    fig2 = px.scatter_mapbox(sensors_spr.reset_index(), lat="latitude", lon="longitude",
                             #hover_data=["stype","fwy","direc","abs_pm","pred_speed"],
                             hover_name="sid",
                             hover_data=list(sensors_data.reset_index().columns),
