@@ -1,0 +1,15 @@
+.tutorials-header .header-logo {
+  background-image: url("../images/torchTS_logo.png");
+}
+
+span.pre {
+  background: inherit;
+}
+
+code span.pre {
+  color: #262626;
+}
+
+article.pytorch-article .class .method dt {
+  font-weight: 500;
+}

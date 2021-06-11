@@ -1,0 +1,41 @@
+cuda:0
+Code started 2021-04-19 20:47:01.770733
+ sample_size 327725
+ train_valid_size 262180
+ training_size 229407
+ validation_size 32772
+ test_size 65545
+0 2021-04-19 20:47:11.236630
+1 2021-04-19 20:51:06.326455
+2 2021-04-19 20:55:01.182988
+3 2021-04-19 20:58:56.664712
+4 2021-04-19 21:02:52.035368
+5 2021-04-19 21:06:49.251651
+6 2021-04-19 21:10:44.657689
+7 2021-04-19 21:14:40.117412
+8 2021-04-19 21:18:35.739949
+9 2021-04-19 21:22:31.553709
+10 2021-04-19 21:26:27.365606
+11 2021-04-19 21:30:23.235651
+12 2021-04-19 21:34:19.159059
+13 2021-04-19 21:38:15.096602
+14 2021-04-19 21:42:10.893177
+15 2021-04-19 21:46:06.700586
+Epoch 16: Loss: 0.288970;  valid_loss: 0.559900;  Time: 236.146430;
+
+
+cuda:0
+Code started 2021-04-20 00:09:50.926296
+ sample_size 327725
+ train_valid_size 262180
+ training_size 229407
+ validation_size 32772
+ test_size 65545
+Traceback (most recent call last):
+  File "/opt/repo/Nautilus-seq2seq/main_station_400001_multiGPU.py", line 435, in <module>
+    model = DDP(model)
+  File "/opt/conda/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 379, in __init__
+    self.process_group = _get_default_group()
+  File "/opt/conda/lib/python3.8/site-packages/torch/distributed/distributed_c10d.py", line 286, in _get_default_group
+    raise RuntimeError("Default process group has not been initialized, "
+RuntimeError: Default process group has not been initialized, please make sure to call init_process_group.

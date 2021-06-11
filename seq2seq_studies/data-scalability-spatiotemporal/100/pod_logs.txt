@@ -1,0 +1,157 @@
+nrp-g1.nysernet.org                          Ready                      <none>                 440d     v1.20.5   2080Ti4
+
+
+Events:
+  Type     Reason                  Age    From                     Message
+  ----     ------                  ----   ----                     -------
+  Warning  FailedScheduling        9m15s  default-scheduler        0/186 nodes are available: 1 node(s) had taint {nautilus.io/nogltest: }, that the pod didn't tolerate, 1 node(s) had taint {nautilus.io/suncave: true}, that the pod didn't tolerate, 1 node(s) had taint {nautilus.io/tpu: true}, that the pod didn't tolerate, 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate, 1 node(s) were unschedulable, 10 node(s) had taint {nautilus.io/stashcache: true}, that the pod didn't tolerate, 103 node(s) didn't match Pod's node affinity, 15 node(s) had taint {nautilus.io/ceph: true}, that the pod didn't tolerate, 2 node(s) had taint {node.kubernetes.io/unreachable: }, that the pod didn't tolerate, 2 node(s) had taint {virtual-kubelet.io/provider: admiralty}, that the pod didn't tolerate, 23 node(s) had taint {nautilus.io/haosu: true}, that the pod didn't tolerate, 3 node(s) had taint {nautilus.io/large-gpu: true}, that the pod didn't tolerate, 3 node(s) had taint {nautilus.io/noceph: true}, that the pod didn't tolerate, 3 node(s) had taint {nauti ...
+  Warning  FailedScheduling        9m15s  default-scheduler        0/186 nodes are available: 1 node(s) had taint {nautilus.io/nogltest: }, that the pod didn't tolerate, 1 node(s) had taint {nautilus.io/suncave: true}, that the pod didn't tolerate, 1 node(s) had taint {nautilus.io/tpu: true}, that the pod didn't tolerate, 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate, 1 node(s) were unschedulable, 10 node(s) had taint {nautilus.io/stashcache: true}, that the pod didn't tolerate, 103 node(s) didn't match Pod's node affinity, 15 node(s) had taint {nautilus.io/ceph: true}, that the pod didn't tolerate, 2 node(s) had taint {node.kubernetes.io/unreachable: }, that the pod didn't tolerate, 2 node(s) had taint {virtual-kubelet.io/provider: admiralty}, that the pod didn't tolerate, 23 node(s) had taint {nautilus.io/haosu: true}, that the pod didn't tolerate, 3 node(s) had taint {nautilus.io/large-gpu: true}, that the pod didn't tolerate, 3 node(s) had taint {nautilus.io/noceph: true}, that the pod didn't tolerate, 3 node(s) had taint {nauti ...
+  Normal   Scheduled               9m3s   default-scheduler        Successfully assigned deep-forecast/train-spatiotemp-data-scalability-100-lhb8j to nrp-g1.nysernet.org
+  Normal   SuccessfulAttachVolume  9m3s   attachdetach-controller  AttachVolume.Attach succeeded for volume "pvc-58920775-457c-41a6-ae92-a8bd7e0c0539"
+  Normal   Pulling                 8m9s   kubelet                  Pulling image "alpine/git"
+  Normal   Pulled                  8m8s   kubelet                  Successfully pulled image "alpine/git" in 1.391812429s
+  Normal   Created                 8m8s   kubelet                  Created container init-clone-repo
+  Normal   Started                 8m7s   kubelet                  Started container init-clone-repo
+  Normal   Pulling                 7m46s  kubelet                  Pulling image "gitlab-registry.nautilus.optiputer.net/akashshah59/torchts-docker"
+  Normal   Pulled                  2m1s   kubelet                  Successfully pulled image "gitlab-registry.nautilus.optiputer.net/akashshah59/torchts-docker" in 5m44.690581021s
+  Normal   Created                 119s   kubelet                  Created container demo
+  Normal   Started                 119s   kubelet                  Started container demo
+
+
+
+  C:\Users\rmartinez4\Box\Personal Git\Nautilus-seq2seq\scratch>kubectl logs train-spatiotemp-data-scalability-100-zbcw6
+2021-05-31 22:37:49.994783: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2021-05-31 22:37:51,737 - INFO - Log directory: /models-vol3/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_0531223751/
+2021-05-31 22:39:26,444 - INFO - Model created
+2021-05-31 22:39:26,445 - INFO - Start training ...
+2021-05-31 22:39:26,445 - INFO - num_batches:570
+2021-05-31 22:39:27,241 - INFO - Total trainable parameters 372353
+2021-05-31 22:53:18,366 - INFO - epoch complete
+2021-05-31 22:53:18,366 - INFO - evaluating now!
+2021-05-31 22:54:21,835 - INFO - Epoch [0/100] (570) train_mae: 0.9699, val_mae: 1.0987, lr: 0.010000, 895.4s
+2021-05-31 22:54:21,838 - INFO - Saved model at 0
+model saved for epoch 0
+2021-05-31 22:54:21,838 - INFO - Val loss decrease from inf to 1.0987, saving to /models-vol3/epo0.tar
+
+
+
+C:\Users\rmartinez4\Box\Personal Git\Nautilus-seq2seq\scratch>kubectl logs train-spatiotemp-data-scalability-100-zbcw6
+2021-05-31 22:37:49.994783: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2021-05-31 22:37:51,737 - INFO - Log directory: /models-vol3/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_0531223751/
+2021-05-31 22:39:26,444 - INFO - Model created
+2021-05-31 22:39:26,445 - INFO - Start training ...
+2021-05-31 22:39:26,445 - INFO - num_batches:570
+2021-05-31 22:39:27,241 - INFO - Total trainable parameters 372353
+2021-05-31 22:53:18,366 - INFO - epoch complete
+2021-05-31 22:53:18,366 - INFO - evaluating now!
+2021-05-31 22:54:21,835 - INFO - Epoch [0/100] (570) train_mae: 0.9699, val_mae: 1.0987, lr: 0.010000, 895.4s
+2021-05-31 22:54:21,838 - INFO - Saved model at 0
+model saved for epoch 0
+2021-05-31 22:54:21,838 - INFO - Val loss decrease from inf to 1.0987, saving to /models-vol3/epo0.tar
+2021-05-31 23:08:15,286 - INFO - epoch complete
+2021-05-31 23:08:15,286 - INFO - evaluating now!
+2021-05-31 23:09:18,771 - INFO - Epoch [1/100] (1140) train_mae: 0.8389, val_mae: 1.0447, lr: 0.010000, 896.9s
+2021-05-31 23:09:18,773 - INFO - Saved model at 1
+model saved for epoch 1
+2021-05-31 23:09:18,774 - INFO - Val loss decrease from 1.0987 to 1.0447, saving to /models-vol3/epo1.tar
+2021-05-31 23:23:12,132 - INFO - epoch complete
+2021-05-31 23:23:12,132 - INFO - evaluating now!
+2021-05-31 23:24:15,596 - INFO - Epoch [2/100] (1710) train_mae: 0.8289, val_mae: 1.0446, lr: 0.010000, 896.8s
+2021-05-31 23:24:15,599 - INFO - Saved model at 2
+model saved for epoch 2
+2021-05-31 23:24:15,599 - INFO - Val loss decrease from 1.0447 to 1.0446, saving to /models-vol3/epo2.tar
+2021-05-31 23:38:08,870 - INFO - epoch complete
+2021-05-31 23:38:08,871 - INFO - evaluating now!
+2021-05-31 23:39:12,393 - INFO - Epoch [3/100] (2280) train_mae: 0.8212, val_mae: 1.0091, lr: 0.010000, 896.8s
+2021-05-31 23:39:12,396 - INFO - Saved model at 3
+model saved for epoch 3
+2021-05-31 23:39:12,396 - INFO - Val loss decrease from 1.0446 to 1.0091, saving to /models-vol3/epo3.tar
+2021-05-31 23:53:05,761 - INFO - epoch complete
+2021-05-31 23:53:05,761 - INFO - evaluating now!
+2021-05-31 23:54:09,212 - INFO - Epoch [4/100] (2850) train_mae: 0.8162, val_mae: 0.9996, lr: 0.010000, 896.8s
+2021-05-31 23:54:09,215 - INFO - Saved model at 4
+model saved for epoch 4
+2021-05-31 23:54:09,215 - INFO - Val loss decrease from 1.0091 to 0.9996, saving to /models-vol3/epo4.tar
+2021-06-01 00:08:02,699 - INFO - epoch complete
+2021-06-01 00:08:02,700 - INFO - evaluating now!
+2021-06-01 00:09:06,168 - INFO - Epoch [5/100] (3420) train_mae: 0.8123, val_mae: 1.0010, lr: 0.010000, 897.0s
+2021-06-01 00:22:59,504 - INFO - epoch complete
+2021-06-01 00:22:59,505 - INFO - evaluating now!
+2021-06-01 00:24:02,956 - INFO - Epoch [6/100] (3990) train_mae: 0.8093, val_mae: 1.0077, lr: 0.010000, 896.8s
+2021-06-01 00:37:56,158 - INFO - epoch complete
+2021-06-01 00:37:56,159 - INFO - evaluating now!
+2021-06-01 00:38:59,612 - INFO - Epoch [7/100] (4560) train_mae: 0.8070, val_mae: 0.9978, lr: 0.010000, 896.7s
+2021-06-01 00:38:59,615 - INFO - Saved model at 7
+model saved for epoch 7
+2021-06-01 00:38:59,615 - INFO - Val loss decrease from 0.9996 to 0.9978, saving to /models-vol3/epo7.tar
+2021-06-01 00:52:52,805 - INFO - epoch complete
+2021-06-01 00:52:52,805 - INFO - evaluating now!
+2021-06-01 00:53:56,256 - INFO - Epoch [8/100] (5130) train_mae: 0.8066, val_mae: 0.9861, lr: 0.010000, 896.6s
+2021-06-01 00:53:56,259 - INFO - Saved model at 8
+model saved for epoch 8
+2021-06-01 00:53:56,259 - INFO - Val loss decrease from 0.9978 to 0.9861, saving to /models-vol3/epo8.tar
+2021-06-01 01:07:49,693 - INFO - epoch complete
+2021-06-01 01:07:49,693 - INFO - evaluating now!
+2021-06-01 01:08:53,149 - INFO - Epoch [9/100] (5700) train_mae: 0.8045, val_mae: 0.9888, lr: 0.010000, 896.9s
+2021-06-01 01:10:59,274 - INFO - Epoch [9/100] (5700) train_mae: 0.8045, test_mae: 1.0499,  lr: 0.010000, 896.9s
+2021-06-01 01:24:52,583 - INFO - epoch complete
+2021-06-01 01:24:52,584 - INFO - evaluating now!
+2021-06-01 01:25:56,089 - INFO - Epoch [10/100] (6270) train_mae: 0.8026, val_mae: 0.9835, lr: 0.010000, 896.8s
+2021-06-01 01:25:56,092 - INFO - Saved model at 10
+model saved for epoch 10
+2021-06-01 01:25:56,092 - INFO - Val loss decrease from 0.9861 to 0.9835, saving to /models-vol3/epo10.tar
+2021-06-01 01:39:49,533 - INFO - epoch complete
+2021-06-01 01:39:49,533 - INFO - evaluating now!
+2021-06-01 01:40:53,001 - INFO - Epoch [11/100] (6840) train_mae: 0.8019, val_mae: 0.9836, lr: 0.010000, 896.9s
+2021-06-01 01:54:46,379 - INFO - epoch complete
+2021-06-01 01:54:46,379 - INFO - evaluating now!
+2021-06-01 01:55:49,850 - INFO - Epoch [12/100] (7410) train_mae: 0.8021, val_mae: 0.9821, lr: 0.010000, 896.8s
+2021-06-01 01:55:49,853 - INFO - Saved model at 12
+model saved for epoch 12
+2021-06-01 01:55:49,853 - INFO - Val loss decrease from 0.9835 to 0.9821, saving to /models-vol3/epo12.tar
+2021-06-01 02:09:43,297 - INFO - epoch complete
+2021-06-01 02:09:43,297 - INFO - evaluating now!
+2021-06-01 02:10:46,775 - INFO - Epoch [13/100] (7980) train_mae: 0.8009, val_mae: 0.9859, lr: 0.010000, 896.9s
+2021-06-01 02:24:40,165 - INFO - epoch complete
+2021-06-01 02:24:40,165 - INFO - evaluating now!
+2021-06-01 02:25:43,620 - INFO - Epoch [14/100] (8550) train_mae: 0.8007, val_mae: 0.9752, lr: 0.010000, 896.8s
+2021-06-01 02:25:43,623 - INFO - Saved model at 14
+model saved for epoch 14
+2021-06-01 02:25:43,623 - INFO - Val loss decrease from 0.9821 to 0.9752, saving to /models-vol3/epo14.tar
+2021-06-01 02:39:37,073 - INFO - epoch complete
+2021-06-01 02:39:37,074 - INFO - evaluating now!
+2021-06-01 02:40:40,576 - INFO - Epoch [15/100] (9120) train_mae: 0.8043, val_mae: 0.9636, lr: 0.010000, 897.0s
+2021-06-01 02:40:40,579 - INFO - Saved model at 15
+model saved for epoch 15
+2021-06-01 02:40:40,579 - INFO - Val loss decrease from 0.9752 to 0.9636, saving to /models-vol3/epo15.tar
+2021-06-01 02:54:33,874 - INFO - epoch complete
+2021-06-01 02:54:33,874 - INFO - evaluating now!
+2021-06-01 02:55:37,317 - INFO - Epoch [16/100] (9690) train_mae: 0.8051, val_mae: 0.9686, lr: 0.010000, 896.7s
+2021-06-01 03:09:30,686 - INFO - epoch complete
+2021-06-01 03:09:30,686 - INFO - evaluating now!
+2021-06-01 03:10:34,148 - INFO - Epoch [17/100] (10260) train_mae: 0.8078, val_mae: 0.9625, lr: 0.010000, 896.8s
+2021-06-01 03:10:34,151 - INFO - Saved model at 17
+model saved for epoch 17
+2021-06-01 03:10:34,151 - INFO - Val loss decrease from 0.9636 to 0.9625, saving to /models-vol3/epo17.tar
+2021-06-01 03:24:27,363 - INFO - epoch complete
+2021-06-01 03:24:27,363 - INFO - evaluating now!
+2021-06-01 03:25:30,802 - INFO - Epoch [18/100] (10830) train_mae: 0.8140, val_mae: 0.9750, lr: 0.010000, 896.7s
+2021-06-01 03:39:24,170 - INFO - epoch complete
+2021-06-01 03:39:24,171 - INFO - evaluating now!
+2021-06-01 03:40:27,618 - INFO - Epoch [19/100] (11400) train_mae: 0.8184, val_mae: 0.9876, lr: 0.000100, 896.8s
+2021-06-01 03:42:33,780 - INFO - Epoch [19/100] (11400) train_mae: 0.8184, test_mae: 1.0642,  lr: 0.000100, 896.8s
+2021-06-01 03:56:27,087 - INFO - epoch complete
+2021-06-01 03:56:27,088 - INFO - evaluating now!
+2021-06-01 03:57:30,579 - INFO - Epoch [20/100] (11970) train_mae: 0.8263, val_mae: 0.9651, lr: 0.001000, 896.8s
+2021-06-01 04:11:24,107 - INFO - epoch complete
+2021-06-01 04:11:24,108 - INFO - evaluating now!
+2021-06-01 04:12:27,571 - INFO - Epoch [21/100] (12540) train_mae: 0.8335, val_mae: 0.9644, lr: 0.001000, 897.0s
+2021-06-01 04:26:20,917 - INFO - epoch complete
+2021-06-01 04:26:20,917 - INFO - evaluating now!
+2021-06-01 04:27:24,360 - INFO - Epoch [22/100] (13110) train_mae: 0.8510, val_mae: 1.0090, lr: 0.001000, 896.8s
+2021-06-01 04:41:17,747 - INFO - epoch complete
+2021-06-01 04:41:17,747 - INFO - evaluating now!
+2021-06-01 04:42:21,223 - INFO - Epoch [23/100] (13680) train_mae: 0.8705, val_mae: 0.9641, lr: 0.001000, 896.9s
+2021-06-01 04:56:14,593 - INFO - epoch complete
+2021-06-01 04:56:14,593 - INFO - evaluating now!
+2021-06-01 04:57:18,062 - INFO - Epoch [24/100] (14250) train_mae: 0.8986, val_mae: 1.0675, lr: 0.001000, 896.8s

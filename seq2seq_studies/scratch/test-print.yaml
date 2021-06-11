@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: print-test-job2
+spec:
+  template:
+    spec:
+      containers:
+      - name: demo
+        image: gitlab-registry.nautilus.optiputer.net/prp/jupyterlab
+        command: 
+        # - "python"
+        # - "main-test.py"
+        - "echo"
+        #args:
+        - "Akash's job is running"
+        # - "arg_job_to_run"
+        # volumeMounts:
+        # - name: git-repo
+        #   mountPath: /opt/repo
+        resources:
+          limits:
+            memory: 48Gi
+            cpu: "6"
+            nvidia.com/gpu: "1"
+          requests:
+            memory: 32Gi
+            cpu: "1"
+            nvidia.com/gpu: "1"
+      initContainers:
+      #- name: ["unzip","cleaned_code.zip"]
+      restartPolicy: Never
+  backoffLimit: 1

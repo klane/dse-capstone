@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Python byte code
+*.pyc
+
+# PyTorch Lightning
+lightning_logs/
+
+# pytest
+.coverage*
+
+# Sphinx
+docs/build/

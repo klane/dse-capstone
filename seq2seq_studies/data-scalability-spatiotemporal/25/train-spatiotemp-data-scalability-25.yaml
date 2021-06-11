@@ -1,0 +1,61 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: train-spatiotemp-data-scalability-25
+spec:
+  template:
+    spec:
+      containers:
+      - name: demo
+        # image: gitlab-registry.nautilus.optiputer.net/prp/jupyterlab
+        image: gitlab-registry.nautilus.optiputer.net/akashshah59/torchts-docker
+        # command: ["/bin/sh","-c"]
+        # args: ["python /opt/repo/Nautilus-seq2seq/main-test.py; kubectl cp models-vol/test_dataframe.csv ./test_dataframe.csv"]
+        command: 
+          - "python"
+        args: 
+          - "/opt/repo/DCRNN_PyTorch/dcrnn_train_pytorch.py"
+          - "--config_filename=/models-vol/raul_train.yaml"
+          # - "/opt/repo/Nautilus-seq2seq/main-test.py"
+        volumeMounts:
+        - name: git-repo
+          mountPath: /opt/repo
+        - name: models-vol
+          mountPath: /models-vol
+        resources:
+          limits:
+            memory: 32Gi
+            cpu: "6"
+            nvidia.com/gpu: "1"
+          requests:
+            memory: 24Gi
+            cpu: "1"
+            nvidia.com/gpu: "1"   
+      initContainers:
+      - name: init-clone-repo
+        image: alpine/git
+        args:
+          - clone
+          - --single-branch
+          - https://gitlab.nautilus.optiputer.net/raulgiovannymartinez/DCRNN_PyTorch
+          - /opt/repo/DCRNN_PyTorch
+        volumeMounts:
+        - name: git-repo
+          mountPath: /opt/repo
+      volumes:
+      - name: models-vol
+        persistentVolumeClaim:
+          claimName: models-vol
+      - name: git-repo
+        emptyDir: {}
+      restartPolicy: Never
+      # affinity:
+      #   nodeAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #       - matchExpressions:
+      #         - key: gpu-type
+      #           operator: In
+      #           values:
+      #           - 2080Ti
+  backoffLimit: 3

@@ -1,0 +1,200 @@
+C:\Users\rmartinez4\Box\Personal Git\Nautilus-seq2seq\scratch>kubectl logs train-spatiotemp-data-scalability-25-lf8p2
+2021-05-12 19:34:12.192352: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2021-05-12 19:34:19,626 - INFO - Log directory: /models-vol/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_0512193419/
+2021-05-12 19:34:42,454 - INFO - Model created
+2021-05-12 19:34:42,455 - INFO - Start training ...
+2021-05-12 19:34:42,455 - INFO - num_batches:570
+2021-05-12 19:34:44,027 - INFO - Total trainable parameters 372353
+2021-05-12 19:51:11,866 - INFO - epoch complete
+2021-05-12 19:51:11,893 - INFO - evaluating now!
+2021-05-12 19:52:12,113 - INFO - Epoch [0/100] (570) train_mae: 1.0058, val_mae: 1.1263, lr: 0.010000, 1049.7s
+2021-05-12 19:52:12,132 - INFO - Saved model at 0
+model saved for epoch 0
+2021-05-12 19:52:12,133 - INFO - Val loss decrease from inf to 1.1263, saving to /models-vol/epo0.tar
+2021-05-12 20:12:30,211 - INFO - epoch complete
+2021-05-12 20:12:30,213 - INFO - evaluating now!
+2021-05-12 20:13:36,115 - INFO - Epoch [1/100] (1140) train_mae: 0.8940, val_mae: 1.0701, lr: 0.010000, 1284.0s
+2021-05-12 20:13:36,123 - INFO - Saved model at 1
+model saved for epoch 1
+2021-05-12 20:13:36,123 - INFO - Val loss decrease from 1.1263 to 1.0701, saving to /models-vol/epo1.tar
+2021-05-12 20:32:31,286 - INFO - epoch complete
+2021-05-12 20:32:31,289 - INFO - evaluating now!
+2021-05-12 20:34:13,259 - INFO - Epoch [2/100] (1710) train_mae: 0.8821, val_mae: 1.0528, lr: 0.010000, 1237.1s
+2021-05-12 20:34:13,276 - INFO - Saved model at 2
+model saved for epoch 2
+2021-05-12 20:34:13,277 - INFO - Val loss decrease from 1.0701 to 1.0528, saving to /models-vol/epo2.tar
+2021-05-12 20:53:58,538 - INFO - epoch complete
+2021-05-12 20:53:58,539 - INFO - evaluating now!
+2021-05-12 20:54:53,107 - INFO - Epoch [3/100] (2280) train_mae: 0.8723, val_mae: 1.0462, lr: 0.010000, 1239.8s
+2021-05-12 20:54:53,129 - INFO - Saved model at 3
+model saved for epoch 3
+2021-05-12 20:54:53,130 - INFO - Val loss decrease from 1.0528 to 1.0462, saving to /models-vol/epo3.tar
+2021-05-12 21:09:50,035 - INFO - epoch complete
+2021-05-12 21:09:50,036 - INFO - evaluating now!
+2021-05-12 21:10:58,111 - INFO - Epoch [4/100] (2850) train_mae: 0.8654, val_mae: 1.0302, lr: 0.010000, 965.0s
+2021-05-12 21:10:58,130 - INFO - Saved model at 4
+model saved for epoch 4
+2021-05-12 21:10:58,130 - INFO - Val loss decrease from 1.0462 to 1.0302, saving to /models-vol/epo4.tar
+2021-05-12 21:28:51,914 - INFO - epoch complete
+2021-05-12 21:28:51,918 - INFO - evaluating now!
+2021-05-12 21:30:04,059 - INFO - Epoch [5/100] (3420) train_mae: 0.8588, val_mae: 1.0574, lr: 0.010000, 1145.9s
+2021-05-12 21:47:08,750 - INFO - epoch complete
+2021-05-12 21:47:08,751 - INFO - evaluating now!
+2021-05-12 21:48:09,456 - INFO - Epoch [6/100] (3990) train_mae: 0.8547, val_mae: 1.0314, lr: 0.010000, 1085.4s
+2021-05-12 22:04:57,870 - INFO - epoch complete
+2021-05-12 22:04:57,872 - INFO - evaluating now!
+2021-05-12 22:06:11,013 - INFO - Epoch [7/100] (4560) train_mae: 0.8510, val_mae: 1.0252, lr: 0.010000, 1081.6s
+2021-05-12 22:06:11,024 - INFO - Saved model at 7
+model saved for epoch 7
+2021-05-12 22:06:11,024 - INFO - Val loss decrease from 1.0302 to 1.0252, saving to /models-vol/epo7.tar
+2021-05-12 22:23:44,895 - INFO - epoch complete
+2021-05-12 22:23:44,896 - INFO - evaluating now!
+2021-05-12 22:25:33,782 - INFO - Epoch [8/100] (5130) train_mae: 0.8491, val_mae: 1.0070, lr: 0.010000, 1162.8s
+2021-05-12 22:25:33,824 - INFO - Saved model at 8
+model saved for epoch 8
+2021-05-12 22:25:33,826 - INFO - Val loss decrease from 1.0252 to 1.0070, saving to /models-vol/epo8.tar
+2021-05-12 22:43:44,556 - INFO - epoch complete
+2021-05-12 22:43:44,558 - INFO - evaluating now!
+2021-05-12 22:44:56,135 - INFO - Epoch [9/100] (5700) train_mae: 0.8451, val_mae: 1.0254, lr: 0.010000, 1162.3s
+2021-05-12 22:46:33,942 - INFO - Epoch [9/100] (5700) train_mae: 0.8451, test_mae: 1.1193,  lr: 0.010000, 1162.3s
+2021-05-12 23:07:40,091 - INFO - epoch complete
+2021-05-12 23:07:40,092 - INFO - evaluating now!
+2021-05-12 23:09:10,311 - INFO - Epoch [10/100] (6270) train_mae: 0.8458, val_mae: 1.0099, lr: 0.010000, 1356.4s
+
+C:\Users\rmartinez4\Box\Personal Git\Nautilus-seq2seq\scratch>kubectl logs train-spatiotemp-data-scalability-50-ztqsb
+2021-05-12 20:42:09.925082: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2021-05-12 20:42:12,893 - INFO - Log directory: /models-vol2/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_0512204212/
+2021-05-12 20:42:42,379 - INFO - Model created
+2021-05-12 20:42:42,380 - INFO - Start training ...
+2021-05-12 20:42:42,380 - INFO - num_batches:570
+2021-05-12 20:42:42,923 - INFO - Total trainable parameters 372353
+2021-05-12 20:52:07,612 - INFO - epoch complete
+2021-05-12 20:52:07,623 - INFO - evaluating now!
+2021-05-12 20:52:49,349 - INFO - Epoch [0/100] (570) train_mae: 0.9350, val_mae: 1.0004, lr: 0.010000, 607.0s
+2021-05-12 20:52:49,371 - INFO - Saved model at 0
+model saved for epoch 0
+2021-05-12 20:52:49,372 - INFO - Val loss decrease from inf to 1.0004, saving to /models-vol2/epo0.tar
+2021-05-12 21:02:21,636 - INFO - epoch complete
+2021-05-12 21:02:21,659 - INFO - evaluating now!
+2021-05-12 21:03:04,152 - INFO - Epoch [1/100] (1140) train_mae: 0.8225, val_mae: 1.0108, lr: 0.010000, 614.8s
+2021-05-12 21:12:38,048 - INFO - epoch complete
+2021-05-12 21:12:38,049 - INFO - evaluating now!
+2021-05-12 21:13:20,652 - INFO - Epoch [2/100] (1710) train_mae: 0.8095, val_mae: 1.0166, lr: 0.010000, 616.5s
+2021-05-12 21:22:52,619 - INFO - epoch complete
+2021-05-12 21:22:52,620 - INFO - evaluating now!
+2021-05-12 21:23:35,116 - INFO - Epoch [3/100] (2280) train_mae: 0.8034, val_mae: 1.0347, lr: 0.010000, 614.5s
+2021-05-12 21:33:07,239 - INFO - epoch complete
+2021-05-12 21:33:07,240 - INFO - evaluating now!
+2021-05-12 21:33:50,030 - INFO - Epoch [4/100] (2850) train_mae: 0.7973, val_mae: 0.9868, lr: 0.010000, 614.9s
+2021-05-12 21:33:50,035 - INFO - Saved model at 4
+model saved for epoch 4
+2021-05-12 21:33:50,035 - INFO - Val loss decrease from 1.0004 to 0.9868, saving to /models-vol2/epo4.tar
+2021-05-12 21:43:18,121 - INFO - epoch complete
+2021-05-12 21:43:18,121 - INFO - evaluating now!
+2021-05-12 21:43:59,761 - INFO - Epoch [5/100] (3420) train_mae: 0.7941, val_mae: 1.0439, lr: 0.010000, 609.7s
+2021-05-12 21:53:30,198 - INFO - epoch complete
+2021-05-12 21:53:30,199 - INFO - evaluating now!
+2021-05-12 21:54:12,940 - INFO - Epoch [6/100] (3990) train_mae: 0.7898, val_mae: 0.9626, lr: 0.010000, 613.2s
+2021-05-12 21:54:12,945 - INFO - Saved model at 6
+model saved for epoch 6
+2021-05-12 21:54:12,945 - INFO - Val loss decrease from 0.9868 to 0.9626, saving to /models-vol2/epo6.tar
+2021-05-12 22:03:42,984 - INFO - epoch complete
+2021-05-12 22:03:42,985 - INFO - evaluating now!
+2021-05-12 22:04:24,124 - INFO - Epoch [7/100] (4560) train_mae: 0.7866, val_mae: 0.9505, lr: 0.010000, 611.2s
+2021-05-12 22:04:24,129 - INFO - Saved model at 7
+model saved for epoch 7
+2021-05-12 22:04:24,129 - INFO - Val loss decrease from 0.9626 to 0.9505, saving to /models-vol2/epo7.tar
+2021-05-12 22:13:58,294 - INFO - epoch complete
+2021-05-12 22:13:58,294 - INFO - evaluating now!
+2021-05-12 22:14:40,181 - INFO - Epoch [8/100] (5130) train_mae: 0.7834, val_mae: 0.9342, lr: 0.010000, 616.1s
+2021-05-12 22:14:40,186 - INFO - Saved model at 8
+model saved for epoch 8
+2021-05-12 22:14:40,186 - INFO - Val loss decrease from 0.9505 to 0.9342, saving to /models-vol2/epo8.tar
+2021-05-12 22:24:10,678 - INFO - epoch complete
+2021-05-12 22:24:10,679 - INFO - evaluating now!
+2021-05-12 22:24:53,414 - INFO - Epoch [9/100] (5700) train_mae: 0.7818, val_mae: 0.9291, lr: 0.010000, 613.2s
+2021-05-12 22:26:16,681 - INFO - Epoch [9/100] (5700) train_mae: 0.7818, test_mae: 0.9998,  lr: 0.010000, 613.2s
+2021-05-12 22:26:16,687 - INFO - Saved model at 9
+model saved for epoch 9
+2021-05-12 22:26:16,687 - INFO - Val loss decrease from 0.9342 to 0.9291, saving to /models-vol2/epo9.tar
+2021-05-12 22:35:49,922 - INFO - epoch complete
+2021-05-12 22:35:49,922 - INFO - evaluating now!
+2021-05-12 22:36:31,917 - INFO - Epoch [10/100] (6270) train_mae: 0.7792, val_mae: 0.9307, lr: 0.010000, 615.2s
+2021-05-12 22:45:59,843 - INFO - epoch complete
+2021-05-12 22:45:59,844 - INFO - evaluating now!
+2021-05-12 22:46:41,462 - INFO - Epoch [11/100] (6840) train_mae: 0.7780, val_mae: 0.9311, lr: 0.010000, 609.5s
+2021-05-12 22:56:07,463 - INFO - epoch complete
+2021-05-12 22:56:07,464 - INFO - evaluating now!
+2021-05-12 22:56:49,178 - INFO - Epoch [12/100] (7410) train_mae: 0.7779, val_mae: 0.9290, lr: 0.010000, 607.7s
+2021-05-12 22:56:49,183 - INFO - Saved model at 12
+model saved for epoch 12
+2021-05-12 22:56:49,183 - INFO - Val loss decrease from 0.9291 to 0.9290, saving to /models-vol2/epo12.tar
+2021-05-12 23:06:14,049 - INFO - epoch complete
+2021-05-12 23:06:14,050 - INFO - evaluating now!
+2021-05-12 23:06:56,129 - INFO - Epoch [13/100] (7980) train_mae: 0.7758, val_mae: 0.9218, lr: 0.010000, 606.9s
+2021-05-12 23:06:56,134 - INFO - Saved model at 13
+model saved for epoch 13
+2021-05-12 23:06:56,134 - INFO - Val loss decrease from 0.9290 to 0.9218, saving to /models-vol2/epo13.tar
+2021-05-12 23:16:24,569 - INFO - epoch complete
+2021-05-12 23:16:24,569 - INFO - evaluating now!
+2021-05-12 23:17:06,751 - INFO - Epoch [14/100] (8550) train_mae: 0.7761, val_mae: 0.9165, lr: 0.010000, 610.6s
+2021-05-12 23:17:06,756 - INFO - Saved model at 14
+model saved for epoch 14
+2021-05-12 23:17:06,756 - INFO - Val loss decrease from 0.9218 to 0.9165, saving to /models-vol2/epo14.tar
+2021-05-12 23:26:32,341 - INFO - epoch complete
+2021-05-12 23:26:32,341 - INFO - evaluating now!
+
+C:\Users\rmartinez4\Box\Personal Git\Nautilus-seq2seq\scratch>kubectl logs train-spatiotemp-data-scalability-75-vv6lz
+2021-05-12 21:20:26.778626: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+2021-05-12 21:20:29,343 - INFO - Log directory: /models-vol3/dcrnn_DR_2_h_12_64-64_lr_0.01_bs_64_0512212029/
+2021-05-12 21:21:41,325 - INFO - Model created
+2021-05-12 21:21:41,325 - INFO - Start training ...
+2021-05-12 21:21:41,325 - INFO - num_batches:570
+2021-05-12 21:21:42,115 - INFO - Total trainable parameters 372353
+2021-05-12 21:35:05,395 - INFO - epoch complete
+2021-05-12 21:35:05,395 - INFO - evaluating now!
+2021-05-12 21:36:03,122 - INFO - Epoch [0/100] (570) train_mae: 0.9453, val_mae: 1.0565, lr: 0.010000, 861.8s
+2021-05-12 21:36:03,127 - INFO - Saved model at 0
+model saved for epoch 0
+2021-05-12 21:36:03,127 - INFO - Val loss decrease from inf to 1.0565, saving to /models-vol3/epo0.tar
+2021-05-12 21:49:26,407 - INFO - epoch complete
+2021-05-12 21:49:26,407 - INFO - evaluating now!
+2021-05-12 21:50:23,764 - INFO - Epoch [1/100] (1140) train_mae: 0.8413, val_mae: 1.0188, lr: 0.010000, 860.6s
+2021-05-12 21:50:23,768 - INFO - Saved model at 1
+model saved for epoch 1
+2021-05-12 21:50:23,768 - INFO - Val loss decrease from 1.0565 to 1.0188, saving to /models-vol3/epo1.tar
+2021-05-12 22:03:45,114 - INFO - epoch complete
+2021-05-12 22:03:45,114 - INFO - evaluating now!
+2021-05-12 22:04:42,448 - INFO - Epoch [2/100] (1710) train_mae: 0.8270, val_mae: 1.0020, lr: 0.010000, 858.7s
+2021-05-12 22:04:42,453 - INFO - Saved model at 2
+model saved for epoch 2
+2021-05-12 22:04:42,453 - INFO - Val loss decrease from 1.0188 to 1.0020, saving to /models-vol3/epo2.tar
+2021-05-12 22:18:03,506 - INFO - epoch complete
+2021-05-12 22:18:03,506 - INFO - evaluating now!
+2021-05-12 22:19:00,808 - INFO - Epoch [3/100] (2280) train_mae: 0.8204, val_mae: 1.0010, lr: 0.010000, 858.4s
+2021-05-12 22:19:00,812 - INFO - Saved model at 3
+model saved for epoch 3
+2021-05-12 22:19:00,812 - INFO - Val loss decrease from 1.0020 to 1.0010, saving to /models-vol3/epo3.tar
+2021-05-12 22:32:21,849 - INFO - epoch complete
+2021-05-12 22:32:21,849 - INFO - evaluating now!
+2021-05-12 22:33:19,179 - INFO - Epoch [4/100] (2850) train_mae: 0.8153, val_mae: 0.9931, lr: 0.010000, 858.4s
+2021-05-12 22:33:19,183 - INFO - Saved model at 4
+model saved for epoch 4
+2021-05-12 22:33:19,184 - INFO - Val loss decrease from 1.0010 to 0.9931, saving to /models-vol3/epo4.tar
+2021-05-12 22:46:41,157 - INFO - epoch complete
+2021-05-12 22:46:41,157 - INFO - evaluating now!
+2021-05-12 22:47:38,490 - INFO - Epoch [5/100] (3420) train_mae: 0.8114, val_mae: 0.9940, lr: 0.010000, 859.3s
+2021-05-12 23:00:59,862 - INFO - epoch complete
+2021-05-12 23:00:59,863 - INFO - evaluating now!
+2021-05-12 23:01:57,278 - INFO - Epoch [6/100] (3990) train_mae: 0.8080, val_mae: 0.9836, lr: 0.010000, 858.8s
+2021-05-12 23:01:57,283 - INFO - Saved model at 6
+model saved for epoch 6
+2021-05-12 23:01:57,283 - INFO - Val loss decrease from 0.9931 to 0.9836, saving to /models-vol3/epo6.tar
+2021-05-12 23:15:18,756 - INFO - epoch complete
+2021-05-12 23:15:18,756 - INFO - evaluating now!
+2021-05-12 23:16:16,109 - INFO - Epoch [7/100] (4560) train_mae: 0.8070, val_mae: 0.9714, lr: 0.010000, 858.8s
+2021-05-12 23:16:16,113 - INFO - Saved model at 7
+model saved for epoch 7
+2021-05-12 23:16:16,113 - INFO - Val loss decrease from 0.9836 to 0.9714, saving to /models-vol3/epo7.tar
+
+C:\Users\rmartinez4\Box\Personal Git\Nautilus-seq2seq\scratch>

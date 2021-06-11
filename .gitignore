@@ -6,3 +6,11 @@ seq2seq_example/data_traffic/*
 /dashboard_traffic_layer/traffic_pred_horizon12.pkl
 
 /dashboard-AG-DR-RM/traffic_pred_horizon12.pkl
+
+seq2seq_studies/data-scalability-spatiotemporal/data/*
+seq2seq_studies/data-scalability-spatiotemporal/*/test.npz
+seq2seq_studies/data-scalability-spatiotemporal/*/train.npz
+seq2seq_studies/data-scalability-spatiotemporal/*/val.npz
+
+seq2seq_studies/dashboard-prototype/*.npz
+seq2seq_studies/dashboard-prototype/*.pkl
