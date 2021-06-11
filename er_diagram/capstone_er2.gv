@@ -1,0 +1,91 @@
+// Create E/R diagram using graphviz
+// Install graphviz using 'conda install graphviz'
+// Create plot by running: dot -Tsvg capstone_er.gv -o capstone_er.svg
+graph csER {
+ 	ratio="fill";
+	size="12,4!";
+	margin=0;
+
+	layout=neato
+        //relations
+	node [shape=box, fillcolor=orange, style=filled]; CovidLocs; CovidCases; Hospitals; PeMSLocs; Traffic;
+        //attributes for CovidLocs
+	node [shape=ellipse, fillcolor=yellow, style=filled]; State; FIPS; Pop;
+        //attributes for CovidCases
+	node [shape=ellipse, fillcolor=yellow, style=filled]; DateStamp; nCases; Type;
+        //attributes for hospitals
+	node [shape=ellipse, fillcolor=yellow, style=filled]; OSHPD_ID; Name; Zip; 
+        //attributes for PeMSLocs
+	node [shape=ellipse, fillcolor=yellow, style=filled]; Route; Dir; Lane;
+        //attributes for Traffic
+	node [shape=ellipse, fillcolor=yellow, style=filled]; Timestamp; Flow; Speed; Occupancy;
+
+        //relations
+	node [shape=diamond,style=filled,fillcolor=green]; RecordedIn; 
+	node [shape=diamond,style=filled,fillcolor=green]; RecordedAt;
+	//node [shape=diamond,style=filled,color=lightgrey]; LocatedIn;
+
+	//node [shape=diamond,style=filled,color=lightgrey]; {node[label="Recorded"] rec1; rec2;}
+	node [shape=diamond,style=filled,fillcolor=green]; CloseBy;
+
+	node [shape=diamond,style=filled,fillcolor=green]; IsIn;
+
+        //attributes for CloseBy relation
+	node [shape=ellipse, style=filled, fillcolor=yellow]; Distance;
+
+        //shared attributes
+        node [shape=ellipse, fillcolor=yellow, style=filled]; {node[label="UID"] uidl, uidc;}
+        node [shape=ellipse, fillcolor=yellow, style=filled]; {node[label="LatLon"] lll, llh; llp;}
+        node [shape=ellipse, fillcolor=yellow, style=filled]; {node[label="County"] countyl, countyh;}
+        node [shape=ellipse, fillcolor=yellow, style=filled]; {node[label="SID"] sidl, sidr;}
+
+        //Covidlocs attributes
+	CovidLocs -- uidl;
+	CovidLocs -- State;
+	CovidLocs -- FIPS;
+	CovidLocs -- countyl;
+	CovidLocs -- lll;
+	CovidLocs -- Pop;
+
+        //CovidCases attributes
+        CovidCases -- uidc;
+        CovidCases -- DateStamp;
+        CovidCases -- nCases;
+        CovidCases -- Type;
+
+        //Hospital attributes
+        Hospitals -- Name;
+        Hospitals -- Zip;
+        Hospitals -- countyh;
+        Hospitals -- llh;
+        Hospitals -- OSHPD_ID;
+
+        //PeMSLoc attributes
+        PeMSLocs -- sidl;
+        PeMSLocs -- Route;
+        PeMSLocs -- Dir;
+        PeMSLocs -- Lane;
+        PeMSLocs -- llp;
+        PeMSLocs -- District;
+
+        //Traffic attributes
+        Traffic -- sidr;
+        Traffic -- Flow;
+        Traffic -- Speed;
+        Traffic -- Occupancy;
+        Traffic -- Timestamp;
+
+        CloseBy -- Distance;
+
+        //Relations
+        CovidLocs -- RecordedIn -- CovidCases;
+        //CovidLocs -- LocatedIn -- Hospitals;
+        //CovidLocs -- LocatedIn -- PeMSLocs;
+        PeMSLocs -- RecordedAt -- Traffic;
+        PeMSLocs -- CloseBy -- Hospitals;
+
+        PeMSLocs -- IsIn -- CovidLocs;
+        
+	//label = "\n\nEntity Relationship Diagram for traffic, Covid-19 and hospital data";
+	fontsize=20;
+}
